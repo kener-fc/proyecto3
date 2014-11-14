@@ -176,6 +176,7 @@ CalcuFlujo = {
         console.log('clearDisplay');
         e.preventDefault();
         this.$display.text("0");  
+        this.numeroActual = 0;
     },
     
     setEvents: function () {

@@ -13,7 +13,7 @@
     </head>
     <body>
         <article class="article">
-            <h1>Proyecto 3, Kener Fernandez</h1>
+           <!-- <h1>Proyecto 3, Kener Fernandez</h1> -->
             <div class="calculator demo">
                 <div class="u4 display">
                     <div class="display-inner"><div class="display-text">0</div></div>
@@ -21,7 +21,7 @@
                 <button id="calculator-button-mc" class="u1 button button-gray">MC</button>
                 <button id="calculator-button-sin" class="u1 button button-gray separator">Sin</button>
                 <button id="calculator-button-clear" class="u1 button button-red">c</button>
-                <button id="calculator-button-backspace" class="u1 button button-backspace button-gray">?</button>
+                <button id="calculator-button-backspace" class="u1 button button-backspace button-gray">&#8592;</button>
                 <button id="calculator-button-negate" class="u1 button button-gray">±</button>
                 <button id="calculator-button-div" class="u1 button button-gray operator">/</button>
                 
