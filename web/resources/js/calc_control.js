@@ -9,7 +9,7 @@ CalcuFlujo = {
       suma : {
         prioridad: 3,
         nombre: 'suma',
-        serviceURL: '/calcuMVC/calcu/suma/',
+        serviceURL: '/CalcuMVC/rest/calcu/suma/',
         boton: '+',
         left: NaN,
         right: NaN
@@ -18,7 +18,7 @@ CalcuFlujo = {
       resta : {
         prioridad: 3,
         nombre: 'resta',
-        serviceURL: '/CalcuRESTful/rest/calc/resta/',
+        serviceURL: '/CalcuMVC/rest/calcu/resta/',
         boton: '-',
         left: NaN,
         right: NaN
@@ -27,7 +27,7 @@ CalcuFlujo = {
       div : {
         prioridad: 2,
         nombre: 'dividir',
-        serviceURL: '/CalcuRESTful/rest/calc/dividir/',
+        serviceURL: '/CalcuMVC/rest/calcu/dividir/',
         boton: '/',
         left: NaN,
         right: NaN
@@ -36,7 +36,7 @@ CalcuFlujo = {
       multi : {
         prioridad: 2,
         nombre: 'multiplica',
-        serviceURL: '/CalcuRESTful/rest/calc/multiplica/',
+        serviceURL: '/CalcuMVC/rest/calcu/multiplica/',
         boton: 'x',
         left: NaN,
         right: NaN
