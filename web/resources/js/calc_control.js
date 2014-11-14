@@ -176,7 +176,21 @@ CalcuFlujo = {
         console.log('clearDisplay');
         e.preventDefault();
         this.$display.text("0");  
-        this.numeroActual = 0;
+        this.numeroActual = "0";
+    },
+    
+    backButtonClicked: function (e) {
+        console.log('clearDisplay');
+        e.preventDefault();
+        
+        if ( this.$display.text().length ===1 ){
+            this.$display.text("0");  
+            this.numeroActual = 0;
+        }
+        else if ( this.$display.text().length > 1 ) {
+            this.$display.text( this.$display.text().substring(0, this.$display.text().length-1) );
+            this.numeroActual = this.$display.text();
+        }
     },
     
     setEvents: function () {
@@ -186,6 +200,8 @@ CalcuFlujo = {
         $('.operator').on('click', $.proxy(this.onOperationClicked, this));
         //Boton de clear
         $('#calculator-button-clear').on('click',$.proxy(this.clearDisplay, this));
+        //boton backspace
+        $('#calculator-button-backspace').on('click',$.proxy(this.backButtonClicked, this));
     },
     
     init : function () {
