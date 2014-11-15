@@ -40,8 +40,45 @@ CalcuFlujo = {
         boton: 'x',
         left: NaN,
         right: NaN
-      }
+      },
       
+      raiz : {
+        prioridad: 1,
+        nombre: 'raiz',
+        serviceURL: '/CalcuMVC/rest/calcu/raiz/',
+        boton: 'raiz',
+        num: NaN
+      },
+      
+        sin : {
+        prioridad: 1,
+                nombre: 'sin',
+                serviceURL: '/CalcuMVC/rest/calcu/sin/',
+                boton: 'sin',
+                num: NaN
+        },
+        
+        cos : {
+            prioridad: 1,
+            nombre: 'cos',
+            serviceURL: '/CalcuMVC/rest/calcu/cos/',
+            boton: 'cos',
+            num: NaN
+        },
+        tan : {
+            prioridad: 1,
+            nombre: 'tan',
+            serviceURL: '/CalcuMVC/rest/calcu/tan/',
+            boton: 'tan',
+            num: NaN
+        },
+        pot : {
+           prioridad: 1,
+            nombre: 'pot',
+            serviceURL: '/CalcuMVC/rest/calcu/pot/',
+            boton: 'pot',
+            num: NaN 
+        }
       //todas las otras operaciones son prioridad 1, raiz, sen, cos, tan
     },
     
@@ -123,24 +160,72 @@ CalcuFlujo = {
             case '=':  
                 this.operacionActual = {};
                 if(this.operaciones.length !== 0){
+                    //ordenar el array segun la prioridad de la operacion si hay mas de 1 
+                    if (this.operaciones.length > 1) {
+                        this.operaciones.sort(function (a, b) {
+                            return parseFloat(a.prioridad) - parseFloat(b.prioridad);
+                        });
+                    }
                     this.ejecutarOperaciones();
                 }
             break;
+            
+            case '√':
+                if (Object.keys(this.operacionActual).length === 0) {
+                    this.operacionActual = this.data.raiz;
+                    this.operacionActual.num = this.numeroActual;
+                    this.operaciones.push(this.operacionActual);
+                    this.operacionActual = {};
+                    this.ejecutarOperaciones();
+                }
+            break;
+            
+            case 'Sin':
+                if (Object.keys(this.operacionActual).length === 0) {
+                    this.operacionActual = this.data.sin;
+                    this.operacionActual.num = this.numeroActual;
+                    this.operaciones.push(this.operacionActual);
+                    this.operacionActual = {};
+                    this.ejecutarOperaciones();
+                }
+            break;
+            
+            case 'Cos':
+                if (Object.keys(this.operacionActual).length === 0) {
+                    this.operacionActual = this.data.cos;
+                    this.operacionActual.num = this.numeroActual;
+                    this.operaciones.push(this.operacionActual);
+                    this.operacionActual = {};
+                    this.ejecutarOperaciones();
+                }
+            break;
+                
+            case 'Tan':
+                if (Object.keys(this.operacionActual).length === 0) {
+                    this.operacionActual = this.data.tan;
+                    this.operacionActual.num = this.numeroActual;
+                    this.operaciones.push(this.operacionActual);
+                    this.operacionActual = {};
+                    this.ejecutarOperaciones();
+                }
+            break;    
+            
+            case 'X2':
+                if (Object.keys(this.operacionActual).length === 0) {
+                    this.operacionActual = this.data.pot;
+                    this.operacionActual.num = this.numeroActual;
+                    this.operaciones.push(this.operacionActual);
+                    this.operacionActual = {};
+                    this.ejecutarOperaciones();
+                } 
+            break;            
         }
         
     },
     
-    ejecutarOperaciones: function () {
-        //ordenar el array segun la prioridad de la operacion si hay mas de 1     
-        //bloquear los botones
-        if (this.operaciones.length > 1){
-            this.operaciones.sort(function(a,b) { return parseFloat(a.prioridad) - parseFloat(b.prioridad); } );            
-            //llamar los servicios de las operaciones
-        }
-        else {
-            //solo hay una operacion ejecutar esa
-            this.ejecutarOperacion(this.operaciones[0]);
-        }                
+    ejecutarOperaciones: function () {                   
+        //Ejecutar operacion actual en la primer posicion
+        this.ejecutarOperacion(this.operaciones[0]);                     
     },
     
     ejecutarOperacion: function (data) {
@@ -150,6 +235,7 @@ CalcuFlujo = {
         }
         else {
             //es una operacion de un parametro
+             params = 'num='+data.num;
         }
         
         $.ajax({
@@ -169,6 +255,10 @@ CalcuFlujo = {
         else{
             //remover del array la opereacion realizada y llamar la siguiente
             //ademas acumular el resultado
+            this.operaciones.shift();
+            this.numeroActual = data;
+            this.operaciones[0].left = this.numeroActual;
+            this.ejecutarOperaciones();
         }
     },
     

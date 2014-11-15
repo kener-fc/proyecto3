@@ -72,4 +72,69 @@ public class CalcuController {
         int result = left * right;
         return String.valueOf(result);
     }
+    
+    /**
+     *    
+     * @param num cantidad a operar
+     * @return
+     */
+    @RequestMapping(value = "/calcu/raiz", method = GET)
+    @ResponseStatus(HttpStatus.OK)
+    public @ResponseBody
+    String raiz(@RequestParam("num") int num) {
+        double result = Math.sqrt(num);
+        return String.valueOf(result);
+    }
+    
+    /**
+     *
+     * @param num cantidad a operar
+     * @return
+     */
+    @RequestMapping(value = "/calcu/sin", method = GET)
+    @ResponseStatus(HttpStatus.OK)
+    public @ResponseBody
+    String sin(@RequestParam("num") int num) {
+        double result = Math.sin(num);
+        return String.valueOf(result);
+    }
+    
+    /**
+     *
+     * @param num cantidad a operar
+     * @return
+     */
+    @RequestMapping(value = "/calcu/cos", method = GET)
+    @ResponseStatus(HttpStatus.OK)
+    public @ResponseBody
+    String cos(@RequestParam("num") int num) {
+        double result = Math.cos(num);
+        return String.valueOf(result);
+    }
+    
+    /**
+     *
+     * @param num cantidad a operar
+     * @return
+     */
+    @RequestMapping(value = "/calcu/tan", method = GET)
+    @ResponseStatus(HttpStatus.OK)
+    public @ResponseBody
+    String tan(@RequestParam("num") int num) {
+        double result = Math.tan(num);
+        return String.valueOf(result);
+    }
+    
+    /**
+     *
+     * @param num cantidad a operar
+     * @return
+     */
+    @RequestMapping(value = "/calcu/pot", method = GET)
+    @ResponseStatus(HttpStatus.OK)
+    public @ResponseBody
+    String pot(@RequestParam("num") int num) {
+        double result = Math.pow(num,2);
+        return String.valueOf(result);
+    }
 }
